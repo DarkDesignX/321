@@ -110,3 +110,15 @@ body {
   .title {
     font-family: 'Fredoka One', cursive;
   }
+
+  .logout{
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: #ade8f4;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgb(0, 0, 0, .5);
+}
