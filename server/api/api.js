@@ -1,40 +1,29 @@
-// const {
-//     register,
-//     login,
-//     getAllUsersInterface,
-//   } = require("./user.js");
-  
-//  const {
-//     sendPrivateMessage,
-//     createPrivateChat,
-//     recievePrivateMessages,
-//     sendPublicMessage,
-//     recievePublicMessages,
-//   } = require("./groupchat.js");
-  
-//   const initializeAPI = (app) => {
-  
-//     app.post("/api/Register", register);
-//     app.post("/api/Login", login);
-//     app.get("/api/Users", getAllUsersInterface);
-  
-//     app.post("/api/private/NewChat", createPrivateChat);
-//     app.post("/api/private/Send", sendPrivateMessage);
-//     app.get("/api/private/Recieve", recievePrivateMessages);
-  
-//     app.post("/api/public/Send", sendPublicMessage);
-//     app.get("/api/public/Recieve", recievePublicMessages);
-
-//   };
-  
-//   module.exports = { initializeAPI };
-
 const initializeAPI = (app) => {
-  app.get("/api/hello", hello);
-};
 
-const hello = (req, res) => {
-  res.send("Hello World!");
-};
+  app.get("/api/Login", (req, res) => {
+    let { user_email, user_password} = req.body;
+    
+    if(executeSQL(`SELECT * FROM users WHERE user_email = '${user_email}' AND user_password = '${user_password}'`)){
+      res.status(200).json({message: "Login successful"})
+      }else{
+      res.status(401).json({message: "Login failed"});
+      }});
+    
+    app.get("/api/Registration", (req, res) => {
+      let { user_email, user_password, user_name} = req.body;
+      
+      if(executeSQL(`SELECT * FROM users WHERE user_email = '${user_email}'`)){
+        res.status(401).json({message: "user_email already exists"});
+        return;
+      }
+      
+      if(executeSQL(`INSERT INTO users (user_email, user_password, user_name) VALUES ('${user_email}', '${user_password}', '${user_name}')`)){
+        res.status(200).json({message: "Registration successful"})
+      }
+      
+      else {
+        res.status(401).json({message: "Registration failed"});
+      }});
+    };
 
 module.exports = { initializeAPI };

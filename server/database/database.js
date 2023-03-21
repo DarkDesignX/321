@@ -2,24 +2,29 @@ let pool = null;
 
 const initializeMariaDB = async () => {
   const mariadb = require("mariadb");
-  pool = mariadb.createPool({
+  const config = {
     database: process.env.DB_NAME || "mychat",
     host: process.env.DB_HOST || "localhost",
     user: process.env.DB_USER || "root",
     password: process.env.DB_PASSWORD || "supersecret123",
     connectionLimit: 5,
-  });
+    connectTimeout: 30000,
+  };
+  console.log('MariaDB pool configuration:', config);
+  pool = mariadb.createPool(config);
 };
 
-const executeSQL = async (query) => {
+async function executeSQL(query) {
+  let conn;
   try {
     conn = await pool.getConnection();
     const res = await conn.query(query);
-    conn.end();
-    return res;
+    console.log(res);
+
   } catch (err) {
-    conn.end();
-    console.log(err)
+    throw err;
+  } finally {
+    if (conn) return conn.end();
   }
 };
 
@@ -28,6 +33,8 @@ const initializeDBSchema = async () => {
     id INT NOT NULL AUTO_INCREMENT,
     user_name VARCHAR(255) NOT NULL,
     user_password VARCHAR(255) NOT NULL,
+    user_email VARCHAR(255) NOT NULL,
+    active BOOLEAN NOT NULL DEFAULT 0,
     PRIMARY KEY (id)
   );`;
   await executeSQL(userTableQuery);
@@ -42,9 +49,5 @@ const initializeDBSchema = async () => {
   );`;
   await executeSQL(messageTableQuery);
 };
-
-const {} = require("./user.js");
-
-const {} = require("./groupchat.js");
 
 module.exports = { executeSQL, initializeMariaDB, initializeDBSchema };

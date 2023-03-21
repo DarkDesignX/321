@@ -1,40 +1,31 @@
 const WebSocket = require("ws");
-
-let global_counter = 0;
-let all_active_connections = {};
+const { executeSQL } = require("./database/database");
 
 // Intiiate the websocket server
 const initializeWebsocketServer = (server) => {
   const websocketServer = new WebSocket.Server({ server });
   websocketServer.on("connection", onConnection);
+  websocketServer.on("close", onClose);
 };
 
 const onConnection = (ws) => {
   console.log("New websocket connection");
-  var id = global_counter++;
-  all_active_connections[id] = ws;
-  ws.id = id;
-  ws.on("message", (message) => {
-    for (conn in all_active_connections) {
-      all_active_connections[conn].send(message);
-    }
-  }).on('close', function() {
-    delete all_active_connections[ws.id];
-  });
+  ws.on("message", (message) => onMessage(ws, message));
+  executeSQL(`UPDATE users SET active = 1 WHERE user_name = ${ws.user_name};`);
 };
 
-const newPublicMessageSend = (user_name, message) => {
-  for (conn in all_active_connections) {
-    all_active_connections[conn].send(`{
-      "chatname": "public",
-      "name": "${user_name}",
-      "message": "${message}"
-    }`);
-  }
-}
+const onClose = (ws) => {
+  console.log(`User ${ws.user_name} disconnected`);
+  executeSQL(`UPDATE users SET active = 0 WHERE user_name = ${ws.user_name};`);
+};
 
-const newPrivateMessageSend = (user_name, message, chat) => {
+const onMessage = (ws, message) => {
+  console.log("Message received: " + message);
+  executeSQL(`INSERT INTO messages (user_id, message) VALUES (${ws.user_id}, ${message});`);
+  //Send message and id to all users
+  //ws.send(JSON.stringify({ user_id: ws.user_id, message: message }));
+  ws.send(message);
 
-}
+};
 
-module.exports = { initializeWebsocketServer, newPublicMessageSend, newPrivateMessageSend };
+module.exports = { initializeWebsocketServer };
