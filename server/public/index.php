@@ -1,7 +1,8 @@
 <?php
-	ini_set('display_errors', '1');
-	ini_set('display_startup_errors', '1');
-	error_reporting(E_ALL);
+	function customError($errno, $errstr)
+	{
+		echo "";
+	}
 
 	use Psr\Http\Message\ResponseInterface as Response;
 	use Psr\Http\Message\ServerRequestInterface as Request;
@@ -10,7 +11,9 @@
 
 	require __DIR__ . "/../vendor/autoload.php";
 
-	require "util/database.php";
+	require_once "util/validation.php";
+	require_once "util/error-and-info-messages.php";
+	require_once "model/sql.php";
 
 	header("Content-Type: application/json");
 
@@ -19,17 +22,14 @@
 	$app->setBasePath("/server");
 
 	$app->post("/Login", function (Request $request, Response $response, $args) {
-		// reads the requested JSON body
 		$body_content = file_get_contents("php://input");
 		$JSON_data = json_decode($body_content, true);
 	
-		// if JSON data doesn't have these then there is an error
 		if (isset($JSON_data["user_name"]) && isset($JSON_data["user_password"])) {
 		} else {
 			error_function(400, "Empty request");
 		}
 	
-		// Prepares the data to prevent bad data, SQL injection andCross site scripting
 		$user_name = validate_string($JSON_data["user_name"]);
 		$user_password = validate_string($JSON_data["user_password"]);
 	
@@ -65,10 +65,6 @@
 		}
 		return $current_user;
 	}
-	
-	// require_once "Controler/validation.php";
-	// require_once "Controler/error-and-info-messages.php";
-	// require_once "Model/SQL.php";
 
 	$app->run();
 ?>
