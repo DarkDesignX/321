@@ -3,8 +3,9 @@ const http = require("http");
 var livereload = require("livereload");
 var connectLiveReload = require("connect-livereload");
 const { initializeWebsocketServer } = require("./server/websocketserver");
-const { initializeAPI } = require("./server/api");
-const { initializeMariaDB, initializeDBSchema, executeSQL } = require("./server/database");
+//needs fixing
+const { initializeAPI } = require("./server/api/api.js");
+const { initializeMariaDB, initializeDBSchema, executeSQL } = require("./server/database/database");
 
 // Create the express server
 const app = express();
@@ -39,9 +40,8 @@ app.get("/", (req, res) => {
   // Initialize the database
   await initializeMariaDB();
   await initializeDBSchema();
-  // TODO: REMOVE!!!! test the database connection
-  const result = await executeSQL("SELECT * FROM users;");
-  console.log(result);
+  await executeSQL();
+  
   //start the web server
   const serverPort = process.env.PORT || 3000;
   server.listen(serverPort, () => {
