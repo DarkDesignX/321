@@ -42,4 +42,8 @@ const initializeDBSchema = async () => {
   await executeSQL(messageTableQuery);
 };
 
+const {} = require("./user.js");
+
+const {} = require("./groupchat.js");
+
 module.exports = { executeSQL, initializeMariaDB, initializeDBSchema };
