@@ -1,4 +1,4 @@
-const { executeSQL } = require("./database");
+const { executeSQL } = require("./database.js");
 
 const createNewGroup = async ($name) => {
     const groupChatName = "groupchat_" + $name;

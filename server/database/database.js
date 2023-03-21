@@ -31,6 +31,7 @@ const initializeDBSchema = async () => {
     PRIMARY KEY (id)
   );`;
   await executeSQL(userTableQuery);
+  
   const messageTableQuery = `CREATE TABLE IF NOT EXISTS messages (
     id INT NOT NULL AUTO_INCREMENT,
     user_id INT NOT NULL,

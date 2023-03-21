@@ -1,4 +1,4 @@
-const { executeSQL, pool } = require("./database");
+const { executeSQL, pool } = require("./database.js");
 
 const registerNewUser = async (user_name, user_password) => {
     return await executeSQL(`INSERT INTO users (id, user_name, user_password) VALUES (NULL, ?, ?);`, [pool.escape(user_name), pool.escape(user_password)]);

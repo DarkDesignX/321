@@ -8,9 +8,16 @@
     "dev": "nodemon --ext js,css,html",
     "prod": "NODE_ENV=production node app.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarkDesignX/321-ChatApplication"
+  },
   "dependencies": {
     "connect-livereload": "^0.6.1",
+    "cookie-parser": "^1.4.3",
+    "crypto": "^1.0.1",
     "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
     "livereload": "^0.9.3",
     "mariadb": "^3.1.0",
     "nodemon": "^2.0.21",

@@ -2,15 +2,15 @@
 //     register,
 //     login,
 //     getAllUsersInterface,
-//   } = require("./user");
+//   } = require("./user.js");
   
-//   const {
+//  const {
 //     sendPrivateMessage,
 //     createPrivateChat,
 //     recievePrivateMessages,
 //     sendPublicMessage,
 //     recievePublicMessages,
-//   } = require("./groupchat");
+//   } = require("./groupchat.js");
   
 //   const initializeAPI = (app) => {
   

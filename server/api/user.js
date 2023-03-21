@@ -1,10 +1,12 @@
 const { createToken, validateToken } = require("../validation/token");
+let crypto = require('crypto');
 const {
   registerNewUser,
   getOneUserByName,
   getAllUsers,
-} = require("../database/main");
+} = require("../database/user.js");
 
+//source: https://flaviocopes.com/node-request-data/
 
 const register = (req, res) => {
   try {
@@ -14,7 +16,7 @@ const register = (req, res) => {
     });
     req.on("end", () => {
       const user_name = JSON.parse(data).user_name;
-      const user_password = JSON.parse(data).user_password;
+      const user_password = crypto.createHmac("sha256", JSON.parse(data).user_password);
 
       if (!user_name) {
         res.status(404).json({
@@ -55,7 +57,7 @@ const login = (req, res) => {
           message: "User was not found",
         });
       }
-      if (!user.user_password !== JSON.parse(data).user_password) {
+      if (!user.user_password !== crypto.createHmac("sha256", JSON.parse(data).password)) {
         res.status(404).json({
           message: "User was not found",
         });
@@ -63,7 +65,7 @@ const login = (req, res) => {
 
       res.cookie("token", createToken(user.user_name), {
         httpOnly: true,
-        maxAge: 600000, // 6h
+        maxAge: 600000, 
       });
 
       res.status(201).json({
