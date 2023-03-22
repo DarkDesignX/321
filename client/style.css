@@ -105,6 +105,7 @@ body {
     background-color: #00b4d8;
     display: flex;
     padding-left: 40%;
+    border-radius: 5px;
   }
 
   .title {
@@ -121,4 +122,68 @@ body {
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 0 0 6px rgb(0, 0, 0, .5);
+}
+
+
+.container-chat {
+  font-family: "Roboto", sans-serif;
+  border: 2px solid #03045e;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.iam {
+  font-family: "Roboto", sans-serif;
+  border-color: #03045e;
+  background-color: #ade8f4;
+  text-align: right;
+}
+
+.container-chat::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.send input {
+  border-radius: 5px;
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: white;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.send-icon{
+  top: 30px;
+  right: 30px;
+  background: #ade8f4;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgb(0, 0, 0, .5);
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.send-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12%;
+}
+
+#mensage {
+  width: calc(100% - 50px);
+  padding-right: 50px;
 }
