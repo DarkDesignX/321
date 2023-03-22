@@ -11,6 +11,8 @@ const { initializeMariaDB, initializeDBSchema, executeSQL } = require("./server/
 const app = express();
 const server = http.createServer(app);
 
+app.use(express.json());
+
 // create a livereload server
 const env = process.env.NODE_ENV || "development";
 if (env !== "production") {

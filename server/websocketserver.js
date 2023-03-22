@@ -1,5 +1,5 @@
 const WebSocket = require("ws");
-const { executeSQL } = require("./database/database");
+const { executeSQL } = require("./database.js");
 
 // Intiiate the websocket server
 const initializeWebsocketServer = (server) => {
@@ -9,7 +9,7 @@ const initializeWebsocketServer = (server) => {
 };
 
 const onConnection = (ws) => {
-  console.log("New websocket connection");
+  console.log(`User ${ws.username} connected`);
   ws.on("message", (message) => onMessage(ws, message));
   executeSQL(`UPDATE users SET active = 1 WHERE user_name = ${ws.user_name};`);
 };
