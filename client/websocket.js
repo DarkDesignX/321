@@ -1,22 +1,20 @@
 const Websocket = require('ws');
 
-const server = new webSocket.Server({ port: 8080 });
-
-const client = new set();
+const server = new webSocket.Server({ port: 3000 });
 
 server.on('connection', (socket) => {
-    clients.add(socket);
+    console.log('Client connected');
 
+    socket.send('Welcome to the WebSocket server!');
 
     socket.on('message', (message) => {
-        for (const client of clients) {
-            if (client !== socket && client.readyState === webSocket.OPEN) {
-                client.send(message);
-            }
-        }
-    });
+        console.log(`Received message: ${message}`);
+        socket.send(`You said: ${message}`);
+      });
 
     socket.on('close', () => {
-        clients.delete(socket);
+        console.log('Client disconnected');
     });
 });
+
+console.log('WebSocket server is listening on port 3000');
