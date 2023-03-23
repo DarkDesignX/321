@@ -60,11 +60,6 @@ const initializeAPI = (app) => {
       }
       return;
     }
-
-    if(!executeSQL(`SELECT * FROM users WHERE user_name = '${request.user_name}'`)){
-      res.status(401).json({message: "Ther is no user with this user_name"});
-      return;
-    }
     
     if(executeSQL(`SELECT * FROM users WHERE user_name = '${request.user_name}'`)){
       res.status(200).json({message: "User found"})
@@ -81,11 +76,6 @@ const initializeAPI = (app) => {
       }
       return;
     }
-
-    if(!executeSQL(`SELECT * FROM users WHERE user_email = '${request.user_email}'`)){
-      res.status(401).json({message: "Ther is no user with this user_email"});
-      return;
-    }
     
     if(executeSQL(`SELECT * FROM users WHERE user_email = '${request.user_email}'`)){
       res.status(200).json({message: "User found"})
@@ -95,11 +85,6 @@ const initializeAPI = (app) => {
 
   app.get("/api/GetUserById", (req, res) => {
     let request = req.body;
-
-    if(!executeSQL(`SELECT * FROM users WHERE id = '${request.id}'`)){
-      res.status(401).json({message: "Ther is no user with this id"});
-      return;
-    }
     
     if(executeSQL(`SELECT * FROM users WHERE id = '${request.id}'`)){
       res.status(200).json({message: "User found"})
