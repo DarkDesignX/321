@@ -1,7 +1,4 @@
 const ws = new WebSocket("ws://localhost:3000");
-ws.addEventListener('message', ev => {
-    showmessage(false, ev.data);
-});
 
 document.querySelector('form').onsubmit = ev => {
   ev.preventDefault();
