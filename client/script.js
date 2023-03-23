@@ -1,3 +1,26 @@
+const sendForm = document.getElementById("send");
+const chatMain = document.getElementById("chat");
+
+const button = document.querySelector('#myButton');
+if (button !== null) {
+  button.addEventListener('click', () => {
+    sendForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+    
+      const messageInput = document.getElementById("menssage");
+      const message = messageInput.value;
+    
+      const newMessage = document.createElement("div");
+      newMessage.classList.add("container-chat", "iam");
+      newMessage.innerHTML = `<p class="text-iam">${message}</p>`;
+    
+      chatMain.appendChild(newMessage);
+    
+      messageInput.value = "";
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const input = document.querySelector('.chat-input input');
   const chat = document.querySelector('.chat-input button');
@@ -26,32 +49,3 @@ function sendMessage() {
     }
   }
 });
-
-const mForm = get(".send");
-const mInput = get(".menssage");
-const mChat = get(".chat");
-
-mForm.addEventListener("submit", event => {
-  event.preventDefault();
-
-  const mText = mInput.value;
-  if (!mText) return;
-
-  appendMessage("right", mText);
-  mInput.value = "";
-});
-
-function appendMessage(text) {
-  const mHTML = `
-    <div class="container-chat iam">
-            <p class="text-iam">${text}</p>
-    </div>
-  `;
-
-  mChat.insertAdjacentHTML("beforeend", mHTML);
-  mChat.scrollTop += 500;
-}
-
-function get(selector, root = document) {
-  return root.querySelector(selector);
-}
