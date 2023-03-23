@@ -14,6 +14,7 @@ body {
     padding: 8% 0 0;
     margin: auto;
   }
+
   .form {
     position: relative;
     z-index: 1;
@@ -48,6 +49,7 @@ body {
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
+    margin: 5px;
   }
 
   .form button:hover,.form button:active,.form button:focus {
@@ -108,20 +110,12 @@ body {
     border-radius: 5px;
   }
 
-  .settings {
-    overflow: hidden;
-    background-color: #00b4d8;
-    display: flex;
-    padding-left: 40%;
-    border-radius: 5px;
-  }
-
   .title {
     font-family: 'Fredoka One', cursive;
   }
 
-  .logout{
-    position: fixed;
+  .icons{
+    float: right;
     top: 30px;
     right: 30px;
     background: #ade8f4;
@@ -130,8 +124,13 @@ body {
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 0 0 6px rgb(0, 0, 0, .5);
+    margin: 5px;
 }
 
+.icon {
+  right: 10px;
+  position: fixed;
+}
 
 .container-chat {
   font-family: "Roboto", sans-serif;
@@ -141,9 +140,12 @@ body {
   padding: 10px;
   margin: 10px 0;
   text-align: left;
+  max-width: 25%;
+  word-wrap: break-word;
 }
 
 .iam {
+  float: right;
   font-family: "Roboto", sans-serif;
   border-color: #03045e;
   background-color: #ade8f4;
@@ -193,13 +195,13 @@ body {
 
 #mensage {
   font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: white;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-    border-radius: 10px;
+  outline: 0;
+  background: white;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border-radius: 10px;
 }
