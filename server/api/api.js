@@ -1,4 +1,4 @@
-const { executeSQL } = require("./database");
+const { executeSQL } = require("./database/database");
 const { jwt } = require("jsonwebtoken");
 
 function createJWT(email, password) {
