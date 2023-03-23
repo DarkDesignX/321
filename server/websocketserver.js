@@ -1,5 +1,5 @@
 const WebSocket = require("ws");
-const { executeSQL } = require("./database.js");
+const { executeSQL } = require("./database/database");
 
 // Intiiate the websocket server
 const initializeWebsocketServer = (server) => {

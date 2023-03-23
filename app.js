@@ -5,7 +5,7 @@ var connectLiveReload = require("connect-livereload");
 const { initializeWebsocketServer } = require("./server/websocketserver");
 //needs fixing
 const { initializeAPI } = require("./server/api/api.js");
-const { initializeMariaDB, initializeDBSchema, executeSQL } = require("./server/database/database.js");
+const { initializeMariaDB, initializeDBSchema } = require("./server/database/database");
 
 // Create the express server
 const app = express();
