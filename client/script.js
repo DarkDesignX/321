@@ -1,51 +1,68 @@
-const sendForm = document.getElementById("send");
-const chatMain = document.getElementById("chat");
-
-const button = document.querySelector('#myButton');
-if (button !== null) {
-  button.addEventListener('click', () => {
-    sendForm.addEventListener("submit", function(event) {
-      event.preventDefault();
-    
-      const messageInput = document.getElementById("menssage");
-      const message = messageInput.value;
-    
-      const newMessage = document.createElement("div");
-      newMessage.classList.add("container-chat", "iam");
-      newMessage.innerHTML = `<p class="text-iam">${message}</p>`;
-    
-      chatMain.appendChild(newMessage);
-    
-      messageInput.value = "";
-    });
-  });
+document.querySelector('form').onsubmit = ev => {
+  ev.preventDefault();
+  const input = document.querySelector('input');
+  ws.send(input.value);
+  showmessage(true, input.value);
+  input.value = '';
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  const input = document.querySelector('.chat-input input');
-  const chat = document.querySelector('.chat-input button');
-  const messages = document.querySelector('.chat-messages');
+$(document).ready(function () {
+  $("#register-form").on("submit", function (event) {
+    event.preventDefault();
 
-  const socket = new WebSocket("ws://localhost:3000");
+    let formData = {
+      user_name: $("input[name='user_name']").val(),
+      user_email: $("input[name='user_email']").val(),
+      user_password: $("input[name='user_password']").val(),
+    };
 
-  socket.addEventListener("open", (event) => {
-    const messageElement = document.createElement("p");
-    messageElement.textContent = event.data;
-    messages.appendChild(messageElement);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    $.ajax({
+      type: "POST",
+      url: "/api/Registration",
+      data: JSON.stringify(formData),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (response) {
+        if (response.message === "Registration successful") {
+          alert("Registration successful! Redirecting to login page...");
+          window.location.href = "index.html";
+        } else {
+          alert(response.message);
+        }
+      },
+      error: function (jqXHR) {
+        alert("Error: " + jqXHR.responseJSON.message);
+      },
+    });
   });
+});
 
-  button.addEventListener("click", sendMessage);
-  input.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-      sendMessage();
-    }
+$(document).ready(function () {
+  $("#login-form").on("submit", function (event) {
+    event.preventDefault();
+
+    let formData = {
+      user_name: $("input[name='user_name']").val(),
+      user_password: $("input[name='user_password']").val(),
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "/api/Login",
+      data: JSON.stringify(formData),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (response) {
+        if (response.message === "Login successful") {
+          alert("Redirecting to home page...");
+          window.location.href = "home.html";
+        } else {
+          alert(response.message);
+        }
+      },
+      error: function (jqXHR) {
+        alert("Error: " + jqXHR.responseJSON.message);
+      },
+    });
   });
-function sendMessage() {
-    const message = input.value.trim();
-    if (message.length > 0) {
-      socket.send(message);
-      input.value = "";
-    }
-  }
 });
