@@ -20,13 +20,21 @@
     </div>
       <div class="login-page">
         <div class="form">
-            <form class="login-form">
+            <form class="login-form" id="register-form" onsubmit="handleSubmit(event, 'register')">
                 <h2>Create Account</h2>
+<<<<<<< HEAD
               <input id="create_user_name" type="text" placeholder="username"/>
               <input id="create_emeil" type="text" placeholder="name@gmeil.com"/>
               <input id="create_user_password" type="password" placeholder="password"/>
               <button type="button" onclick="login()">Create</button>
               <p class="message">Already existing account ? <a href="index.html">Login now</a></p>
+=======
+              <input name="user_name" type="text" placeholder="username"/>
+              <input name="user_email" type="text" placeholder="name@mail.com"/>
+              <input name="user_password" type="password" placeholder="••••••••"/>
+              <input type="submit" value="register" class="button">
+              <p class="message">Already existing account? <a href="index.html">Login now</a></p>
+>>>>>>> 7edd50b7edbec56762af3219ebbfc515fcc654ee
             </form>
           </div>
         </div>
