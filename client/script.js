@@ -26,3 +26,32 @@ function sendMessage() {
     }
   }
 });
+
+const mForm = get(".send");
+const mInput = get(".menssage");
+const mChat = get(".chat");
+
+mForm.addEventListener("submit", event => {
+  event.preventDefault();
+
+  const mText = mInput.value;
+  if (!mText) return;
+
+  appendMessage("right", mText);
+  mInput.value = "";
+});
+
+function appendMessage(text) {
+  const mHTML = `
+    <div class="container-chat iam">
+            <p class="text-iam">${text}</p>
+    </div>
+  `;
+
+  mChat.insertAdjacentHTML("beforeend", mHTML);
+  mChat.scrollTop += 500;
+}
+
+function get(selector, root = document) {
+  return root.querySelector(selector);
+}

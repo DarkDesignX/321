@@ -9,12 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <title>HomeChat</title>
     <link rel="stylesheet" href="style.css">
-    <script src="/script.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
+    <main class="chat">
+
     <div class="topnav">
         <h1 class="title">LobsterChat</h1>
         <img src="img/lobsterlogo.png" alt="">
+        <a href="settings.html" ><img class="settings" src="img/settings.svg" alt="" ></a>
         <a href="index.html" ><img class="logout" src="img/logout.svg" alt="" ></a>
     </div>
 
@@ -36,10 +39,14 @@
         <p class="text-iam">Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
     </div>
 
+    </main>
+
+    <form class="send">
     <div class="send-container">
-        <input id="mensage" type="text" placeholder=""/>
+        <input id="menssage" type="text" placeholder=""/>
         <img class="send-icon" src="img/send.svg" alt="">
     </div>
+    </form>
     
 </body>
 </html>

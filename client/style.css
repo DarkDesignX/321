@@ -108,6 +108,14 @@ body {
     border-radius: 5px;
   }
 
+  .settings {
+    overflow: hidden;
+    background-color: #00b4d8;
+    display: flex;
+    padding-left: 40%;
+    border-radius: 5px;
+  }
+
   .title {
     font-family: 'Fredoka One', cursive;
   }
