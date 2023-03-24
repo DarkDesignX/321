@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const sendButton = document.getElementById('send-m');
 const messageInput = document.getElementById('menssage');
 const chatMessages = document.getElementById('chat-messages');
@@ -13,7 +12,7 @@ sendButton.addEventListener('click', () => {
     messageInput.value = '';
   }
 });
-=======
+
 const ws = new WebSocket("ws://localhost:3000");
 
 document.querySelector('form').onsubmit = ev => {
@@ -23,8 +22,6 @@ document.querySelector('form').onsubmit = ev => {
   showmessage(true, input.value);
   input.value = '';
 }
->>>>>>> 230ab2d5189094a1428a26b6201c1aa157e312b5
-
 $(document).ready(function () {
   $("#register-form").on("submit", function (event) {
     event.preventDefault();
@@ -61,7 +58,7 @@ $(document).ready(function () {
     event.preventDefault();
 
     let formData = {
-      user_name: $("input[name='user_name']").val(),
+      user_email: $("input[name='user_email']").val(),
       user_password: $("input[name='user_password']").val(),
     };
 
