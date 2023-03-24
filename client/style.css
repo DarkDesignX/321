@@ -163,6 +163,7 @@ body {
   max-width: 25%;
   word-wrap: break-word;
   display: block;
+  clear: both;
 }
 
 .iam {
