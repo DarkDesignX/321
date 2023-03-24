@@ -162,7 +162,7 @@ body {
   text-align: left;
   max-width: 25%;
   word-wrap: break-word;
-  display: block;
+  display:block;
 }
 
 .iam {
@@ -212,6 +212,10 @@ body {
   align-items: center;
   justify-content: space-between;
   margin-top: 12%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vmax;
 }
 
 #mensage {
