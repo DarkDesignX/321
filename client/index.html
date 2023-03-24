@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <title>LobsterChat</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="topnav">
@@ -18,16 +18,22 @@
     </div>
     <div class="container-style head-style">
     </div>
-      <div class="login-page">
-        <div class="form">
-            <form class="login-form">
-                <h2>Log In</h2>
-              <input name="user_name" type="text" placeholder="username"/>
-              <input name="user_password" type="password" placeholder="••••••••"/>
-              <input type="submit" value="login" class="button">
-              <p class="message">Not account? <a href="create.html">Register now</a></p>
-            </form>
-          </div>
+    <div class="login-page">
+      <div class="form">
+        <h2>Log In</h2>
+          <form id="login-form">
+              <p>Email<p>
+              <input type="text" name="user_name" placeholder="username">
+              <p>Password<p>
+              <input type="password" name="user_password" placeholder="••••••••">
+              <br>
+              <input type="submit" value="Login">
+          </form>                        
         </div>
+      </div>
+    <div class="login-in">
+      <p>Not account? <a href="create.html" class="register-link">Register now</a></p>
+    </div>
+</div>
   </body>
 </html>

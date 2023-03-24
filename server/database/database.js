@@ -37,7 +37,6 @@ const initializeDBSchema = async () => {
     user_name VARCHAR(255) NOT NULL,
     user_password VARCHAR(255) NOT NULL,
     user_email VARCHAR(255) NOT NULL,
-    active BOOLEAN NOT NULL DEFAULT 0,
     PRIMARY KEY (id)
   );`;
   await executeSQL(userTableQuery);
