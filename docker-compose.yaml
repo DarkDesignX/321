@@ -15,19 +15,19 @@ services:
     ports:
       - 3306:3306
 
-  # lobsterchat:
-  #   image: darkdesignx/lobsterchat:latest
-  #   restart: always
-  #   depends_on:
-  #     - mariadb
-  #   environment:
-  #   - DB_NAME=mychat
-  #   - DB_HOST=mariadb
-  #   - DB_USER=mychat
-  #   - DB_PASSWORD=mychatpassword
-  #   - DB_PORT=3306
-  #   ports:
-  #     - 3000:3000
+  lobsterchat:
+     image: darkdesignx/lobsterchat:latest
+     restart: always
+     depends_on:
+       - mariadb
+     environment:
+     - DB_NAME=mychat
+     - DB_HOST=mariadb
+     - DB_USER=mychat
+     - DB_PASSWORD=mychatpassword
+     - DB_PORT=3306
+     ports:
+       - 3000:3000
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
