@@ -37,3 +37,7 @@ messageInput.addEventListener('keydown', (event) => {
     sendMessage();
   }
 });
+
+function scrollDown() {
+  window.scrollBy(0, document.body.scrollHeight);
+}
