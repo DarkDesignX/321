@@ -15,6 +15,7 @@ services:
     ports:
       - 3306:3306
 
+# not needed if working dev
   lobsterchat:
      image: darkdesignx/lobsterchat:latest
      restart: always
