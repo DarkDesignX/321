@@ -1,25 +1,17 @@
-const sendForm = document.getElementById("send");
-const chatMain = document.getElementById("chat");
+const sendButton = document.getElementById('send-m');
+const messageInput = document.getElementById('menssage');
+const chatMessages = document.getElementById('chat-messages');
 
-const button = document.querySelector('#myButton');
-if (button !== null) {
-  button.addEventListener('click', () => {
-    sendForm.addEventListener("submit", function(event) {
-      event.preventDefault();
-    
-      const messageInput = document.getElementById("menssage");
-      const message = messageInput.value;
-    
-      const newMessage = document.createElement("div");
-      newMessage.classList.add("container-chat", "iam");
-      newMessage.innerHTML = `<p class="text-iam">${message}</p>`;
-    
-      chatMain.appendChild(newMessage);
-    
-      messageInput.value = "";
-    });
-  });
-}
+sendButton.addEventListener('click', () => {
+  console.log('Botón enviar funciona');
+  if (messageInput.value.trim() !== '') {
+    const message = document.createElement('div');
+    message.classList.add('container-chat', 'iam');
+    message.innerHTML = `<p class="text-iam">${messageInput.value}</p>`;
+    chatMessages.appendChild(message);
+    messageInput.value = '';
+  }
+});
 
 document.addEventListener('DOMContentLoaded', function() {
   const input = document.querySelector('.chat-input input');
