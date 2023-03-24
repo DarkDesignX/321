@@ -1,19 +1,28 @@
-// Wait for the DOM to load before executing the script
-document.addEventListener("DOMContentLoaded", function(event) {
+$(document).ready(function () {
+  $("#login-form").on("submit", function (event) {
+    event.preventDefault();
 
-  // Get the login form element
-  var loginForm = document.getElementById("login-form");
+    let formData = {
+      user_name: $("input[name='user_name']").val(),
+    };
 
-  // Add an event listener for form submission
-  loginForm.addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
-
-    // Get the entered username value
-    var username = loginForm.elements["user_email"].value;
-
-    // Display an alert message with the entered username
-    alert("Welcome, " + username + "!");
-    window.location.href = "home.html";
+    $.ajax({
+      type: "POST",
+      url: "/api/Login",
+      data: JSON.stringify(formData),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (response) {
+        if (response.message === "Login successful! Redirecting to home page...") {
+          alert("Login successful, Redirecting to home page...");
+          window.location.href = "home.html";
+        } else {
+          alert(response.message);
+        }
+      },
+      error: function (jqXHR) {
+        alert("Error: " + jqXHR.responseJSON.message);
+      },
+    });
   });
-
 });
