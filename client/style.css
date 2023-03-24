@@ -162,7 +162,7 @@ body {
   text-align: left;
   max-width: 25%;
   word-wrap: break-word;
-  display:block;
+  display: block;
 }
 
 .iam {
@@ -229,4 +229,8 @@ body {
   box-sizing: border-box;
   font-size: 14px;
   border-radius: 10px;
+}
+
+.room {
+  width: 100vmax;
 }
