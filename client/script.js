@@ -1,13 +1,3 @@
-const ws = new WebSocket("ws://localhost:3000");
-
-document.querySelector('form').onsubmit = ev => {
-  ev.preventDefault();
-  const input = document.querySelector('input');
-  ws.send(input.value);
-  showmessage(true, input.value);
-  input.value = '';
-}
-
 $(document).ready(function () {
   $("#register-form").on("submit", function (event) {
     event.preventDefault();
@@ -44,7 +34,7 @@ $(document).ready(function () {
     event.preventDefault();
 
     let formData = {
-      user_name: $("input[name='user_name']").val(),
+      user_email: $("input[name='user_email']").val(),
       user_password: $("input[name='user_password']").val(),
     };
 
