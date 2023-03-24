@@ -1,69 +1,19 @@
-const ws = new WebSocket("ws://localhost:3000");
+// Wait for the DOM to load before executing the script
+document.addEventListener("DOMContentLoaded", function(event) {
 
-document.querySelector('form').onsubmit = ev => {
-  ev.preventDefault();
-  const input = document.querySelector('input');
-  ws.send(input.value);
-  showmessage(true, input.value);
-  input.value = '';
-}
-$(document).ready(function () {
-  $("#register-form").on("submit", function (event) {
-    event.preventDefault();
+  // Get the login form element
+  var loginForm = document.getElementById("login-form");
 
-    let formData = {
-      user_name: $("input[name='user_name']").val(),
-      user_email: $("input[name='user_email']").val(),
-      user_password: $("input[name='user_password']").val(),
-    };
+  // Add an event listener for form submission
+  loginForm.addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
 
-    $.ajax({
-      type: "POST",
-      url: "/api/Registration",
-      data: JSON.stringify(formData),
-      contentType: "application/json",
-      dataType: "json",
-      success: function (response) {
-        if (response.message === "Registration successful") {
-          alert("Registration successful! Redirecting to login page...");
-          window.location.href = "index.html";
-        } else {
-          alert(response.message);
-        }
-      },
-      error: function (jqXHR) {
-        alert("Error: " + jqXHR.responseJSON.message);
-      },
-    });
+    // Get the entered username value
+    var username = loginForm.elements["user_email"].value;
+
+    // Display an alert message with the entered username
+    alert("Welcome, " + username + "!");
+    window.location.href = "home.html";
   });
-});
 
-$(document).ready(function () {
-  $("#login-form").on("submit", function (event) {
-    event.preventDefault();
-
-    let formData = {
-      user_email: $("input[name='user_email']").val(),
-      user_password: $("input[name='user_password']").val(),
-    };
-
-    $.ajax({
-      type: "POST",
-      url: "/api/Login",
-      data: JSON.stringify(formData),
-      contentType: "application/json",
-      dataType: "json",
-      success: function (response) {
-        if (response.message === "Login successful") {
-          alert("Redirecting to home page...");
-          window.location.href = "home.html";
-        } else {
-          alert(response.message);
-        }
-      },
-      error: function (jqXHR) {
-        alert("Error: " + jqXHR.responseJSON.message);
-      },
-    });
-  });
 });

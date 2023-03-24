@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <title>LobsterChat</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
@@ -22,10 +23,7 @@
       <div class="form">
         <h2>Log In</h2>
           <form id="login-form">
-              <p>Email<p>
-              <input type="text" name="user_email" placeholder="name@gmeil.com">
-              <p>Password<p>
-              <input type="password" name="user_password" placeholder="••••••••">
+              <input type="text" name="user_email" placeholder="username">
               <br>
               <input type="submit" value="Login" style="
               text-transform: uppercase;
@@ -40,9 +38,6 @@
               transition: all 0.3 ease;
               cursor: pointer;
               margin: 5px;" >
-                  <div class="login-in">
-                    <p>Not account? <a href="create.html" class="register-link">Register now</a></p>
-                  </div>
           </form>                        
         </div>
       </div>
