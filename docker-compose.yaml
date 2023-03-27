@@ -17,7 +17,7 @@ services:
 
 # not needed if working dev
   lobsterchat:
-     image: darkdesignx/lobsterchat:latest
+     image: darkdesignx/lobsterchat:v2
      restart: always
      depends_on:
        - mariadb
